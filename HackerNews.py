@@ -15,4 +15,7 @@ for i in range(len(a)):
 	url = "https://hacker-news.firebaseio.com/v0/item/"+str(a[i])+ ".json"
 	payload = "{}"
 	response = requests.request("GET", url, data=payload)
-	print(response.text)
+	dict_response = response.json()
+	print("Title: " + str(dict_response['title']))
+	if 'url' in dict_response.keys():
+		print("URL: " + str(dict_response['url']),"\n")
