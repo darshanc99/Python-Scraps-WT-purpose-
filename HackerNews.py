@@ -10,14 +10,19 @@ a = response.text
 
 #Converting string list into list
 a = ast.literal_eval(a)
-
-for i in range(len(a)):
+lis = []
+for i in range(3):
 	url = "https://hacker-news.firebaseio.com/v0/item/"+str(a[i])+ ".json"
 	payload = "{}"
 	response = requests.request("GET", url, data=payload)
 	dict_response = response.json()
 	#print(dict_response)
-	print("Title: " + str(dict_response['title']))
+	"""print("Title: " + str(dict_response['title']))
 	print("Type:",str(dict_response['type']))
 	if 'url' in dict_response.keys():
-		print("URL: " + (dict_response['url']),"\n")
+		print("URL: " + (dict_response['url']),"\n")"""
+
+	news = {'Title': str(dict_response['title']), 'url': dict_response['url'], 'type': str(dict_response['type'])}
+	
+	lis.append(news)
+print(lis)
